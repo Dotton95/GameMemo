@@ -9,17 +9,32 @@ import java.io.Serializable;
 @Entity(tableName = "memo")
 public class Memo implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    public int no;
+    private int no;
 
     @ColumnInfo(name = "code")
-    public int code;
+    private int code;
 
     @ColumnInfo(name = "title")
-    public String title;
+    private String title;
 
     @ColumnInfo(name = "id")
-    public String id;
+    private String id;
 
     @ColumnInfo(name = "pwd")
-    public String pwd;
+    private String pwd;
+
+    public int getNo() { return no; }
+    public void setNo(int no) { this.no = no; }
+
+    public int getCode() { return code; }
+    public void setCode(int code) { this.code = code; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public String getPwd() { return pwd; }
+    public void setPwd(String pwd) { this.pwd = pwd; }
 }
