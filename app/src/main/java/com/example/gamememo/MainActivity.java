@@ -1,14 +1,14 @@
 package com.example.gamememo;
 
-import androidx.annotation.NonNull;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
-import android.os.Bundle;
-
+import com.bumptech.glide.Glide;
 import com.example.gamememo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         binding.setMemo(memo);
 
         db = DB.getInstance(this);
+
+//Glide.with(getApplicationContext()).load(get_Favicon).into(binding.iv2);
+
 
     }
 }
