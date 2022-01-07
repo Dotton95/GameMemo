@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Log.d("ddd", "MainActivity로 돌아왔다. ");
+                        }else if(result.getResultCode()==Activity.RESULT_CANCELED){
+                            Log.d("ddd", "AddActivity를 취소했다. ");
                         }
                     }
                 });
@@ -83,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         binding.mainIvAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(MainActivity.this, AddActivity.class);
                 startActivityResult.launch(intent);
             }
