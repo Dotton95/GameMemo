@@ -1,11 +1,19 @@
 package com.example.gamememo;
 
+import android.app.Activity;
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -59,6 +67,26 @@ public class MainActivity extends AppCompatActivity {
         adapter.setItems(list);
 
 
+        ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Log.d("ddd", "MainActivity로 돌아왔다. ");
+                        }
+                    }
+                });
 
+
+
+        binding.mainIvAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivityResult.launch(intent);
+            }
+        });
     }
 }
