@@ -1,26 +1,37 @@
 package com.example.gamememo;
 
-import static androidx.room.OnConflictStrategy.REPLACE;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
 @Dao
 public interface MemoDAO {
 
-    @Insert(onConflict = REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Memo memo);
 
-    @Query("SELECT * FROM memo group by code")
-    List<Memo> selectGroupAll();
-
-    @Query("UPDATE memo SET title = :title, code = :code,id = :id, pwd = :pwd  WHERE `no` = :no")
-    void update(int no, int code,String title, String id, String pwd);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAllMemo(List<Memo> memos);
 
     @Delete
     void delete(Memo memo);
+
+    @Update
+    void update(Memo memo);
+
+    @Query("SELECT * FROM memo group by code")
+    List<Memo> selectGameCodeAll();
+
+    @Query("SELECT * FROM memo")
+    List<Memo> selectAllMemo();
+
+    @Query("DELETE FROM memo")
+    void deleteAllMemo();
+
+
 }

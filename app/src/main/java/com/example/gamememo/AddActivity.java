@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.gamememo.databinding.ActivityAddBinding;
 
@@ -18,15 +19,17 @@ import java.util.Arrays;
 public class AddActivity extends AppCompatActivity {
     ActivityAddBinding binding;
 
+    private DB db;
+    private int gameCode;
+
+    private String[] gameList = {"선택하기","리그오브레전드","로스트아크","피파온라인4","스팀","블리자드","PC"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add);
-        ArrayList<String> gameList = new ArrayList<>(Arrays.asList(
-                new String[]{"선택하기","리그오브레전드","로스트아크","피파온라인4","스팀","블리자드","PC"}
-        ));
 
         binding.addSpinner.setAdapter(new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,gameList));
@@ -34,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
         binding.addSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                gameCode = position;
             }
 
             @Override
@@ -45,6 +48,21 @@ public class AddActivity extends AppCompatActivity {
         binding.addBtnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(gameCode==0||binding.addEdtId.getText()==null||binding.addEdtPwd.getText()==null){
+
+                    return;
+                }
+
+                Memo memo = new Memo();
+                memo.code = gameCode;
+                memo.title = binding.addEdtTitle.getText()==null?"":binding.addEdtTitle.getText().toString();
+                memo.id = binding.addEdtId.getText().toString();
+                memo.pwd = binding.addEdtPwd.getText().toString();
+                memo.pwd2 = binding.addEdtPwd2.getText()==null?"":binding.addEdtPwd2.getText().toString();
+
+                db = DB.getInstance(getApplicationContext());
+                db.memoDAO().insert(memo);
+
                 setResult(Activity.RESULT_OK);
                 finish();
             }

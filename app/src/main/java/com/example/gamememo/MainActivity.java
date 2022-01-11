@@ -24,11 +24,13 @@ import com.bumptech.glide.Glide;
 import com.example.gamememo.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    //private Memo memo = new Memo();
+    private Memo memo = new Memo();
     private DB db;
+    private List<Memo> list = new ArrayList<>();
 
 
     private  MemoAdapter adapter;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        //binding.setMemo(memo);
+        binding.setMemo(memo);
 
         db = DB.getInstance(this);
 
@@ -47,14 +49,7 @@ public class MainActivity extends AppCompatActivity {
         lm.setOrientation(LinearLayoutManager.VERTICAL);
         binding.mainRvMemos.setLayoutManager(lm);
 
-        ArrayList<Memo> list = new ArrayList<>();
-        Memo m1 = new Memo("본계","zxzx1zx","159a159!");
-        Memo m2 = new Memo("부계","zxzx2zx","159a159!");
-        Memo m3 = new Memo("부부계","zxzx3zx","159a159!");
-
-        list.add(m1);
-        list.add(m2);
-        list.add(m3);
+        list = db.memoDAO().selectAllMemo();
 
 
         adapter = new MemoAdapter();
@@ -65,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         helper.attachToRecyclerView(binding.mainRvMemos);
 
-        adapter.setItems(list);
+
+        adapter.setItems((ArrayList<Memo>) list);
 
 
         ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
@@ -74,7 +70,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
+
+                            list = db.memoDAO().selectAllMemo();
+                            adapter.setItems((ArrayList<Memo>) list);
+                            adapter.notifyDataSetChanged();
+                            binding.mainRvMemos.setAdapter(adapter);
+
                             Log.d("ddd", "MainActivity로 돌아왔다. ");
+
                         }else if(result.getResultCode()==Activity.RESULT_CANCELED){
                             Log.d("ddd", "AddActivity를 취소했다. ");
                         }

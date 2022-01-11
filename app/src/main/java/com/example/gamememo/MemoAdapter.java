@@ -1,5 +1,6 @@
 package com.example.gamememo;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,8 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             binding = ItemMemoBinding.bind(itemView);
         }
         public void onBind(Memo item, int pos){
+            binding.memoIvIcon.setImageResource(R.drawable.lostark);
+
             binding.memoTvId.setText(item.id);
             binding.memoTvPwd.setText(item.pwd);
             binding.memoTvTitle.setText(item.title);
