@@ -18,10 +18,8 @@ import java.util.Arrays;
 
 public class AddActivity extends AppCompatActivity {
     ActivityAddBinding binding;
-
     private DB db;
     private int gameCode;
-
     private String[] gameList = {"선택하기","리그오브레전드","로스트아크","피파온라인4","스팀","블리자드","PC"};
 
     @Override
@@ -39,7 +37,6 @@ public class AddActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 gameCode = position;
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
@@ -49,7 +46,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(gameCode==0||binding.addEdtId.getText()==null||binding.addEdtPwd.getText()==null){
-
+                    Toast.makeText(getApplicationContext(),"종류선택 혹은 입력값을 확인해주세요",Toast.LENGTH_SHORT);
                     return;
                 }
 
@@ -59,7 +56,7 @@ public class AddActivity extends AppCompatActivity {
                 memo.id = binding.addEdtId.getText().toString();
                 memo.pwd = binding.addEdtPwd.getText().toString();
                 memo.pwd2 = binding.addEdtPwd2.getText()==null?"":binding.addEdtPwd2.getText().toString();
-
+                memo.sort = MainActivity.listSize+1;
                 db = DB.getInstance(getApplicationContext());
                 db.memoDAO().insert(memo);
 

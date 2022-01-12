@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private DB db;
     private List<Memo> list = new ArrayList<>();
 
+    public static int listSize;
 
     private  MemoAdapter adapter;
     @Override
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setItems((ArrayList<Memo>) list);
 
+        listSize = list.size();
 
         ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                             adapter.setItems((ArrayList<Memo>) list);
                             adapter.notifyDataSetChanged();
                             binding.mainRvMemos.setAdapter(adapter);
-
+                            listSize = list.size();
                             Log.d("ddd", "MainActivity로 돌아왔다. ");
 
                         }else if(result.getResultCode()==Activity.RESULT_CANCELED){
@@ -94,4 +96,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //int size = binding.mainRvMemos.getAdapter().getItemCount();
+        ArrayList<Memo> input = adapter.getItems();
+
+        for(int i=1; i<input.size()+1;i++){
+            input.get(i-1).sort = i;
+        }
+
+        db.memoDAO().deleteAllMemo();
+        db.memoDAO().insertAllMemo(input);
+    }
+
 }

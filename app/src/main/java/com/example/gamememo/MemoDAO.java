@@ -27,7 +27,7 @@ public interface MemoDAO {
     @Query("SELECT * FROM memo group by code")
     List<Memo> selectGameCodeAll();
 
-    @Query("SELECT * FROM memo")
+    @Query("SELECT * FROM memo order by sort")
     List<Memo> selectAllMemo();
 
     @Query("DELETE FROM memo")

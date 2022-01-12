@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gamememo.databinding.ItemMemoBinding;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> implements ItemTouchHelperListener{
 
@@ -47,7 +48,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         Memo item = list.get(from_pos);
         list.remove(from_pos);
         list.add(to_pos,item);
-        item.sort = to_pos;
+//        Collections.swap(list, from_pos, to_pos);
         notifyItemMoved(from_pos,to_pos);
         return true;
     }
@@ -56,7 +57,9 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         this.list = list;
         notifyDataSetChanged();
     }
-
+    public ArrayList<Memo> getItems(){
+        return list;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ItemMemoBinding binding;
@@ -65,11 +68,21 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             binding = ItemMemoBinding.bind(itemView);
         }
         public void onBind(Memo item, int pos){
-            binding.memoIvIcon.setImageResource(R.drawable.lostark);
-
-            binding.memoTvId.setText(item.id);
-            binding.memoTvPwd.setText(item.pwd);
+            int icon = 0;
+            switch (item.code){
+                case 1: icon = R.drawable.lol; break;
+                case 2: icon = R.drawable.lostark; break;
+                case 3: icon = R.drawable.fifa4; break;
+                case 4: icon = R.drawable.steam; break;
+                case 5: icon = R.drawable.blizard; break;
+            }
+            binding.memoIvIcon.setImageResource(icon);
             binding.memoTvTitle.setText(item.title);
+            binding.memoTvId.setText(item.id);
+            if(item.pwd2.equals(""))  binding.memoTvPwd.setText("1차 "+item.pwd);
+            else   binding.memoTvPwd.setText("1차 "+item.pwd+" / 2차 "+item.pwd2);
+
+
             item.sort = pos;
         }
     }
