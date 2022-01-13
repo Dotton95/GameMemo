@@ -4,21 +4,25 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.EdgeEffect;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gamememo.databinding.ActivityMainBinding;
@@ -86,7 +90,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
+        binding.mainRvMemos.setEdgeEffectFactory(new RecyclerView.EdgeEffectFactory(){
+            @NonNull
+            @Override
+            protected EdgeEffect createEdgeEffect(@NonNull RecyclerView view, int direction) {
+                return new EdgeEffect(view.getContext()){
+                    @Override
+                    public boolean draw(Canvas canvas) {
+                        return false;
+                    }
+                };
+            }
+        });
 
         binding.mainIvAdd.setOnClickListener(new View.OnClickListener() {
             @Override

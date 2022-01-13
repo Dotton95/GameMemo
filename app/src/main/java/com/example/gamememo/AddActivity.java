@@ -83,7 +83,7 @@ public class AddActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) { }
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()<1){
+                if(s.toString().length()==0){
                     if(sep.equals("id")){
                         binding.addLayoutId.setError(errorMessage);
                         idCheck = false;
@@ -108,7 +108,7 @@ public class AddActivity extends AppCompatActivity {
                     binding.addBtnOk.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.gray)));
                 }else {
                     binding.addBtnOk.setEnabled(true);
-                    binding.addBtnOk.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.black)));
+                    binding.addBtnOk.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.very_peri)));
                 }
             }
         };

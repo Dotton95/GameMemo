@@ -1,11 +1,9 @@
 package com.example.gamememo;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,8 +71,10 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
                 case 3: icon = R.drawable.fifa4; break;
                 case 4: icon = R.drawable.steam; break;
                 case 5: icon = R.drawable.blizard; break;
+                case 6: icon = R.drawable.outline_desktop_mac_24; break;
             }
 
+            binding.memoIvIcon.setClipToOutline(true);
             binding.memoIvIcon.setImageResource(icon);
             binding.memoTvTitle.setText(item.title);
             binding.memoTvId.setText(item.id);

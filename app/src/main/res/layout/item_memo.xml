@@ -8,9 +8,11 @@
     android:layout_height="60dp">
     <ImageView
         android:id="@+id/memo_iv_icon"
-        android:src="@drawable/lostark"
+        android:src="@drawable/fifa4"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/circle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -56,8 +58,8 @@
         android:id="@+id/memo_iv_handle"
         android:src="@drawable/baseline_drag_handle_24"
         android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
