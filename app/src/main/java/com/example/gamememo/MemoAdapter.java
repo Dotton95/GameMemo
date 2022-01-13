@@ -45,10 +45,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
 
     @Override
     public boolean onItemDrag(int from_pos, int to_pos) {
-        Memo item = list.get(from_pos);
-        list.remove(from_pos);
-        list.add(to_pos,item);
-//        Collections.swap(list, from_pos, to_pos);
+        Collections.swap(list, from_pos, to_pos);
         notifyItemMoved(from_pos,to_pos);
         return true;
     }
@@ -57,16 +54,17 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
         this.list = list;
         notifyDataSetChanged();
     }
-    public ArrayList<Memo> getItems(){
+    public ArrayList<Memo> getItems() {
         return list;
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-
         ItemMemoBinding binding;
+
         public ViewHolder(View itemView) {
             super(itemView);
             binding = ItemMemoBinding.bind(itemView);
         }
+
         public void onBind(Memo item, int pos){
             int icon = 0;
             switch (item.code){
@@ -76,12 +74,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
                 case 4: icon = R.drawable.steam; break;
                 case 5: icon = R.drawable.blizard; break;
             }
+
             binding.memoIvIcon.setImageResource(icon);
             binding.memoTvTitle.setText(item.title);
             binding.memoTvId.setText(item.id);
-            if(item.pwd2.equals(""))  binding.memoTvPwd.setText("1차 "+item.pwd);
-            else   binding.memoTvPwd.setText("1차 "+item.pwd+" / 2차 "+item.pwd2);
-
+            if(item.pwd2.equals(""))  {
+                binding.memoTvPwd.setText("1차 "+item.pwd);
+            }
+            else binding.memoTvPwd.setText("1차 "+item.pwd+" / 2차 "+item.pwd2);
 
             item.sort = pos;
         }
