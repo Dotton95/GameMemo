@@ -33,11 +33,9 @@ public class AddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add);
 
-        binding.addBtnOk.setEnabled(false);
+        //addSpinner Setting
         binding.addSpinner.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,gameList));
         binding.addSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -46,9 +44,12 @@ public class AddActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { gameCode = position; }
         });
 
+        //addEdt Setting
         binding.addEdtId.addTextChangedListener(addTextWatcher("계정 ID를 입력해주세요","id"));
         binding.addEdtPwd.addTextChangedListener(addTextWatcher("계정 PASSWARD를 입력해주세요","pwd"));
 
+
+        //addBtn Setting
         binding.addBtnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +76,8 @@ public class AddActivity extends AppCompatActivity {
         });
 
     }
+
+    //Custom TextWatcher 중복코드제거
     public TextWatcher addTextWatcher(String errorMessage,String sep){
         return new TextWatcher() {
             @Override
