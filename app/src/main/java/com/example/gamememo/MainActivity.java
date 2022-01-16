@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
         db = DB.getInstance(this);
 
         recyclerviewSetting();
-
         initRecyclerviewItems();
-
         initStartActivityResult();
 
     }
