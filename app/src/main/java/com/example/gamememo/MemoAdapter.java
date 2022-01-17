@@ -79,10 +79,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
             binding.memoTvTitle.setText(item.title);
             binding.memoTvId.setText(item.id);
             if(item.pwd2.equals(""))  {
+                binding.memoTvPwd2.setVisibility(View.GONE);
                 binding.memoTvPwd.setText("1차 "+item.pwd);
             }
-            else binding.memoTvPwd.setText("1차 "+item.pwd+" / 2차 "+item.pwd2);
-
+            else {
+                binding.memoTvPwd2.setVisibility(View.VISIBLE);
+                binding.memoTvPwd.setText("1차 : "+item.pwd);
+                binding.memoTvPwd2.setText("2차 : "+item.pwd2);
+            }
             item.sort = pos;
         }
     }

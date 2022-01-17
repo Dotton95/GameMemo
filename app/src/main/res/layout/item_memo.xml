@@ -42,16 +42,26 @@
         android:textSize="13dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintVertical_chainStyle="spread"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/memo_tv_pwd"
         app:layout_constraintLeft_toLeftOf="@+id/memo_v_bind"/>
     <TextView
         android:id="@+id/memo_tv_pwd"
-        tools:text="1차 : 159a159! / 2차 : 3290"
-        android:textSize="13dp"
+        tools:text="1차 : 159a159!"
+        android:textSize="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/memo_tv_id"
+        app:layout_constraintBottom_toTopOf="@id/memo_tv_pwd2"
+        app:layout_constraintLeft_toLeftOf="@+id/memo_v_bind"/>
+    <TextView
+        android:id="@+id/memo_tv_pwd2"
+        tools:text="2차 : 159a159!"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/memo_tv_pwd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/memo_v_bind"/>
     <ImageView

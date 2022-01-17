@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.setMemo(memo);
 
         //DB 연결
         db = DB.getInstance(this);
