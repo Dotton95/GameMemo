@@ -1,4 +1,4 @@
-package com.example.gamememo;
+package com.dotton.gamememo;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gamememo.R;
 import com.example.gamememo.databinding.ItemMemoBinding;
 
 import java.util.ArrayList;
@@ -38,6 +39,14 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> im
     @Override
     public void onItemSwipe(int pos) {
         list.remove(pos);
+        if(list.size()<1){
+            MainActivity.binding.mainRvMemos.setVisibility(View.GONE);
+            MainActivity.binding.mainIvNodata.setVisibility(View.VISIBLE);
+        }else {
+            MainActivity.binding.mainRvMemos.setVisibility(View.VISIBLE);
+            MainActivity.binding.mainIvNodata.setVisibility(View.GONE);
+        }
+
         notifyDataSetChanged();
     }
 

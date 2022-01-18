@@ -1,4 +1,4 @@
-package com.example.gamememo;
+package com.dotton.gamememo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -6,20 +6,15 @@ import androidx.databinding.DataBindingUtil;
 
 import android.app.Activity;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
+import com.example.gamememo.R;
 import com.example.gamememo.databinding.ActivityAddBinding;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AddActivity extends AppCompatActivity {
     ActivityAddBinding binding;

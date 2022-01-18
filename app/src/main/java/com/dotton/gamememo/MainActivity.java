@@ -1,4 +1,4 @@
-package com.example.gamememo;
+package com.dotton.gamememo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,12 +16,14 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.gamememo.R;
 import com.example.gamememo.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
+    static ActivityMainBinding binding;
     private Memo memo = new Memo();
     private DB db;
     private List<Memo> list = new ArrayList<>();
@@ -45,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         initStartActivityResult();
 
     }
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -84,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.setItems((ArrayList<Memo>) list);
         binding.mainRvMemos.setAdapter(adapter);
         listSize = list.size();
+
+        if(list.size()<1){
+            binding.mainRvMemos.setVisibility(View.GONE);
+            binding.mainIvNodata.setVisibility(View.VISIBLE);
+        }else {
+            binding.mainRvMemos.setVisibility(View.VISIBLE);
+            binding.mainIvNodata.setVisibility(View.GONE);
+        }
     }
     private void initStartActivityResult(){
         ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(

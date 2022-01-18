@@ -1,4 +1,4 @@
-package com.example.gamememo;
+package com.dotton.gamememo;
 
 public interface ItemTouchHelperListener {
     void onItemSwipe(int pos);

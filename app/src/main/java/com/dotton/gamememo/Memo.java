@@ -1,4 +1,4 @@
-package com.example.gamememo;
+package com.dotton.gamememo;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

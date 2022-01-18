@@ -9,10 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GameMemo">
         <activity
-            android:name=".AddActivity"
+            android:name="com.dotton.gamememo.AddActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.dotton.gamememo.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
