@@ -1,4 +1,4 @@
-package com.dotton.gamememo;
+package my.dotton.gamememo;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

@@ -8,7 +8,7 @@
         android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.dotton.gamememo.AddActivity">
+        tools:context="my.dotton.gamememo.AddActivity">
         <Spinner
             android:id="@+id/add_spinner"
             android:layout_width="match_parent"

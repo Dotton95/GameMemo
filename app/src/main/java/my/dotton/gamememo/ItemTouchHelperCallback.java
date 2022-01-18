@@ -1,4 +1,4 @@
-package com.dotton.gamememo;
+package my.dotton.gamememo;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;

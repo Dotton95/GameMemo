@@ -1,4 +1,4 @@
-package com.dotton.gamememo;
+package my.dotton.gamememo;
 
 import android.app.Activity;
 import android.content.Intent;
