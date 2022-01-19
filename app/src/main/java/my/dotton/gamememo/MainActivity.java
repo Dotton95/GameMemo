@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //DB 연결
         db = DB.getInstance(this);
-
+        //RoomDB 암호화 해야됨
         recyclerviewSetting();
         initRecyclerviewItems();
         initStartActivityResult();
