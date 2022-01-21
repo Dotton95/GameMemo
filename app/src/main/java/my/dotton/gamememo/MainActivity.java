@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private DB db;
     private List<Memo> list = new ArrayList<>();
 
-    //메모생성시 sort증가를 위한 변수
     public static int listSize;
 
     private  MemoAdapter adapter;
@@ -39,9 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        //DB 연결
         db = DB.getInstance(this);
-        //RoomDB 암호화 해야됨
         recyclerviewSetting();
         initRecyclerviewItems();
         initStartActivityResult();
@@ -50,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        //화면에 있는 아이템 가져와서 sort 정렬순서 초기화 후 DB 저장
         ArrayList<Memo> input = adapter.getItems();
         for(int i=1; i<input.size()+1;i++){
             input.get(i-1).sort = i;
