@@ -20,7 +20,6 @@
     <TextView
         android:id="@+id/memo_tv_title"
         tools:text="본계정"
-        android:textColor="@color/black"
         android:textSize="15dp"
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
