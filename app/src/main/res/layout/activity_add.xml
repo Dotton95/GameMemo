@@ -9,15 +9,16 @@
         android:layout_height="match_parent"
         tools:context="my.dotton.gamememo.AddActivity">
 
-        <Spinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/add_spinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
+            style="@style/SpinnerItem"
+
             android:layout_marginRight="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
-
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -29,7 +30,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            app:boxStrokeColor="@color/very_peri"
+            app:boxStrokeColor="@color/textinput_style"
             app:hintTextColor="@color/very_peri"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/add_spinner"
@@ -51,7 +52,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            app:boxStrokeColor="@color/very_peri"
+            app:boxStrokeColor="@color/textinput_style"
             app:hintTextColor="@color/very_peri"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/add_layout_title"
@@ -66,7 +67,7 @@
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            app:boxStrokeColor="@color/very_peri"
+            app:boxStrokeColor="@color/textinput_style"
             app:hintTextColor="@color/very_peri"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
@@ -96,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextColor="@color/very_peri"
-            app:boxStrokeColor="@color/very_peri"
+            app:boxStrokeColor="@color/textinput_style"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@+id/add_layout_pwd"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -36,7 +36,9 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { gameCode = position; }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                gameCode = position;
+            }
         });
 
         //addEdt Setting
