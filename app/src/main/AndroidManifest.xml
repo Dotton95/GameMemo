@@ -10,7 +10,8 @@
         android:theme="@style/Theme.GameMemo">
         <activity
             android:name="my.dotton.gamememo.AddActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name="my.dotton.gamememo.MainActivity"
             android:exported="true">

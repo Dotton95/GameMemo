@@ -24,6 +24,8 @@ public class AddActivity extends AppCompatActivity {
 
     private boolean idCheck = false;
     private boolean pwdCheck = false;
+    private boolean gameCheck = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +33,25 @@ public class AddActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add);
 
         //addSpinner Setting
-        binding.addSpinner.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,gameList));
+        binding.addSpinner.setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item,gameList));
         binding.addSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gameCode = position;
+                if(position > 0){
+                    gameCheck = true;
+                    gameCode = position;
+                }else {
+                    gameCheck = false;
+                }
+                if(!idCheck||!pwdCheck||!gameCheck){
+                    binding.addBtnOk.setEnabled(false);
+                    binding.addBtnOk.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.gray)));
+                }else {
+                    binding.addBtnOk.setEnabled(true);
+                    binding.addBtnOk.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.very_peri)));
+                }
             }
         });
 
@@ -83,7 +97,7 @@ public class AddActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) { }
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()==0){
+                if(s.toString().length()==0||s.toString().trim().equals("")){
                     if(sep.equals("id")){
                         binding.addLayoutId.setError(errorMessage);
                         idCheck = false;
@@ -103,7 +117,7 @@ public class AddActivity extends AppCompatActivity {
                     }
                 }
 
-                if(!idCheck||!pwdCheck){
+                if(!idCheck||!pwdCheck||!gameCheck){
                     binding.addBtnOk.setEnabled(false);
                     binding.addBtnOk.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.gray)));
                 }else {
